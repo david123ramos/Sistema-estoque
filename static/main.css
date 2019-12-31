@@ -1,0 +1,48 @@
+ul{
+    list-style: none;
+}
+
+#main, #storage{
+    border: 1px solid rgba(0, 0, 0, 0.246);
+    border-radius: 10px !important;
+    margin-top: auto;
+}
+#titleMenu{
+    color: white;
+}
+.btn-sup{
+    display:block;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    border: 1px solid white;
+    background: white;
+    color: black;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.footer {
+
+    color: white;
+    text-align: center;
+}
+h4{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    justify-content: center;
+    align-items: center;
+}
+.openFuncionality:hover{
+    cursor: pointer;
+}
+
+div[class ~="badge"]{
+    font-size: large;
+}
+.smallLetters{
+    opacity: .5;
+    font-size: small;
+}
+
+i[title ="editar"]:hover{
+    cursor: pointer;
+}

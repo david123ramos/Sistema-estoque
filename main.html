@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
+    <link rel="stylesheet" href="./static/main.css">
+    <link rel="shortcut icon" href="./img/iconPage.ico" type="image/x-icon">
+    <title>Estoque Fácil</title>
+</head>
+<body>
+    <div class="container mw-100 m-0 p-0">
+        <nav class="navbar navbar-default navbar-static-top navbar-dark bg-dark">
+            <div class="nav-item">
+                <a class="navbar-brand" href="main.html">Home</a>
+            </div>
+            <div class="nav-item">
+                <h1 id="titleMenu">Estoque Fácil</h1>
+            </div>
+            <div class="nav-item">
+                <a class="btn-sup" href="#">
+                    <div class="ml-1 mt-1">user</div>
+                </a>
+            </div>
+        </nav>
+        <div id="storageOk" hidden class="alert alert-success" role="alert">
+            Novo estoque cadastrado.
+        </div>
+        <!--div da tela principal-->
+        <div id="main" class="bg-light border mt-5 mx-3">
+            <div class="row justify-content-center mt-5 mw-100 mx-0 p-1">
+                
+                <div onclick="showTab('storage')" class="shadow rounded col-12 col-sm-3 mb-5 mx-2 openFuncionality">
+                    <div class="row justify-content-center ">
+                        <i  class="m-4 fas fa-archive fa-5x"></i>
+                    </div>
+                    <div  class="row justify-content-center mw-100 m-0">
+                        <div class="badge text-wrap">Estoques</div>
+                    </div>
+                </div>
+                <div onclick="showTab('employees')" class="shadow rounded col-12  col-sm-3 mb-5 mx-2 openFuncionality">
+                    <div class="row justify-content-center ">
+                        <i  class="m-4  fas fa-user-friends fa-5x"></i>
+                    </div>
+                    <div class="row justify-content-center mw-100 m-0">
+                        <div class="badge text-wrap">Funcionários</div>
+                    </div>
+                </div>
+                <div class="shadow rounded col-12  col-sm-3 mb-5 mx-2 openFuncionality">
+                    <div class="row justify-content-center ">
+                        <i  class=" m-4 fas fa-truck fa-5x"></i>
+                    </div>
+                    <div class="row justify-content-center mw-100 m-0">
+                        <div class="badge text-wrap">
+                            Fornecedores
+                            <a href="#" title=":(" class="badge badge-danger ml-5">não finalizado</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="shadow rounded col-12  col-sm-3 mb-5 mx-2 openFuncionality">
+                    <div class="row justify-content-center ">
+                        <i  class=" m-4  fas fa-store fa-5x"></i>
+                    </div>
+                    <div class="row justify-content-center mw-100 m-0">
+                        <div class="badge text-wrap">
+                            Produtos
+                            <a href="#" class="badge badge-danger ml-5" title=":(">não finalizado</a>
+                        </div>
+                    </div>
+                </div>
+
+                </div>
+            </div>
+        </div>
+        <!--Div que aparece quando o usuário entra na sessão de estoque-->
+        <!--Roteamento e componentização deixaria essa tarefa mais "certa", no geral-->
+        <!--TODO: template-->
+        <div id="storage" class="bg-light border mt-5 mx-3" hidden>
+            <div class="row justify-content-center mt-5 mw-100">
+                <div class="shadow rounded col-4 mb-5 mx-2 openFuncionality"data-toggle="modal" data-target="#registerStorage">
+                    <div class="row justify-content-center ">
+                        <i class="fas fa-plus fa-5x m-4">
+                        </i>
+                    </div>
+                    <div class="row justify-content-center mw-100 m-0">
+                        <div class="badge text-wrap">Adicionar estoque</div>
+                    </div>
+                </div>
+                <div onclick="showStorages()" class="shadow rounded col-4 mb-5 mx-2 openFuncionality" data-toggle="modal" data-target="#showStorages">
+                    <div class="row justify-content-center">
+                        <i class="fas fa-box-open fa-5x m-4"></i>
+                    </div>
+                    <div class="row justify-content-center mw-100 m-0">
+                        <div class="badge text-wrap">Meus estoques</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--div que é aberto quando o usuário clica na aba de funcinonários-->
+        <div id="employees" class="bg-light border mt-5 mx-3" hidden>
+            <div class="row justify-content-center mt-5 mw-100">
+                <div class="shadow rounded col-4 mb-5 mx-2 openFuncionality" data-toggle="modal" data-target="#registerEmployees">
+                    <div class="row justify-content-center ">
+                        <i class="fas fa-plus fa-5x m-4">
+                        </i>
+                    </div>
+                    <div class="row justify-content-center mw-100 m-0">
+                        <div class="badge text-wrap">Adicionar novo funcionário</div>
+                    </div>
+                </div>
+                <div  class="shadow rounded col-4 mb-5 mx-2 openFuncionality" data-toggle="modal" data-target="#showEmployees">
+                    <div class="row justify-content-center">
+                        <i class="fas fa-id-card fa-5x m-4"></i>
+                    </div>
+                    <div class="row justify-content-center mw-100 m-0">
+                        <div class="badge text-wrap">Meus funcinonários</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="bg-dark p-1 fixed-bottom">
+      
+        <div  class="row justify-content-center mw-100 footer">
+            <p class="mb-1">Created by: &lt\David Ramos&gt</p>
+        </div>
+
+        <div  class="row justify-content-center mw-100 footer">
+            <p class="m-0" >Contact information: drs@a.recife.ifpe.edu.br</p>
+        </div>
+    </div>
+
+    <!--Modal para cadastro de estoque-->
+    <div class="modal fade" id="registerStorage" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Adicionar novo estoque</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <form action="" id="formRegisterNewStorage">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <input required maxlength="15" type="text"  class="form-control" placeholder="nome do estoque">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label class="ml-5"></label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <input required maxlength="30" type="text"  class="form-control" placeholder="localização do estoque">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label class="ml-5" ></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success">Salvar</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    </div>
+                </form>
+            </div>
+          </div>
+        </div>
+      </div>
+        <!--Modal que exibe a lista de estoques da empresa que está logada-->
+        <div class="modal fade" id="showStorages" tabindex="-1" hidden role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Estoques</h5>
+                <a href="#" class="badge badge-danger ml-5">não finalizado</a>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <ul class="list-group">
+                    
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-success">Salvar</button>
+            </div>
+            </div>
+        </div>
+        </div>
+
+        <!--Modais da aba funcionários-->
+        <!--Modal usado para cadastro de funcionários-->
+        <div class="modal fade" id="registerEmployees" tabindex="-1"  role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Novo funcionário</h5>
+                <!--alert de funcionalidade não acabada-->
+                <a href="#" class="badge badge-danger ml-5">não finalizado</a>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-row">
+                      <div class="form-group col-md-6">
+                        <label for="inputEmail4">Nome e sobrenome</label>
+                        <input required type="text" maxlength="15" class="form-control" >
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label >Ultimo nome</label>
+                        <input required type="text" class="form-control" >
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label >Endereço</label>
+                      <input required type="text" class="form-control" placeholder="Rua, logradouro...">
+                    </div>
+                    <div class="form-row">
+                      <div class="form-group col-md-6">
+                        <label for="inputCity">Cidade</label>
+                        <input required type="text" maxlength="10" class="form-control">
+                      </div>
+                      <div class="form-group col-md-4">
+                        <label>Estado</label>
+                        <select required class="form-control">
+                          <option>PE</option>
+                          <option>SP</option>
+                          <option>AC</option>
+                          <option>...+</option>
+                        </select>
+                      </div>
+                      <div class="form-group col-md-2">
+                        <label for="inputZip">CPF</label>
+                        <input required type="text" class="form-control" maxlength="11" id="inputZip">
+                      </div>
+                    </div>
+                    <div class="form-row">
+                        <label for="inputZip">Setor</label>
+                        <select required class="form-control">
+                            <option>Almoxarifado</option>
+                            <option>Recursos Humanos</option>
+                            <option>Departamento Pessoal</option>
+                            <option>...+</option>
+                        </select>
+                    </div>
+                    <div class="modal-footer mt-5">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-success">Salvar</button>
+                    </div>
+                  </form>
+            </div>
+            </div>
+        </div>
+        </div>
+        <!--modal que surge quando pedimos para exibir funcionários-->
+        <div class="modal fade" id="showEmployees" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Funcionários</h5>
+                    <a href="#" class="badge badge-danger ml-5">não finalizado</a>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            David Ramos da Silva
+                            <div class="row justify-content-start px-3">
+                                <div class="smallLetters">Desenvolvedor</div>
+                                <i class="fas fa-pencil-alt ml-2" title="editar"></i>
+                            </div>
+                        </li>                        
+                        <li class="list-group-item">
+                            Daniel Miranda e Barreto
+                            <div class="row justify-content-start px-3">
+                                <div class="smallLetters">Gerente financeiro</div>
+                                <i class="fas fa-pencil-alt ml-2" title="editar"></i>
+                            </div>
+                        </li>                        
+                    </ul>
+                </div>
+                </div>
+                </div>
+            </div>
+
+
+    <script src="./src/main.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+</body>
+</html>
