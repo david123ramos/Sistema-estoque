@@ -2,4 +2,6 @@
 
 sistema simples de gerenciamento de estoque.
 
-<a href="david123ramos.github.io/sistemaestoque">Veja no github pages</a>
+````
+<a href="david123ramos.github.io/sistemaestoque" target="_blank">Veja no github pages</a>
+````
